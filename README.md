@@ -10,6 +10,20 @@ En consonancia cos principios da ciencia aberta, PercepMap publícase como softw
 
 > **Estado do proxecto:** versión experimental. O código non está preparado para recoller datos persoais reais nun servidor público sen unha revisión adicional de seguridade e unha configuración adecuada. Véxanse [SECURITY.md](SECURITY.md) e [DEPLOYMENT.md](DEPLOYMENT.md).
 
+![](docs/capturas/1.png)
+
+![](docs/capturas/2.png)
+
+![](docs/capturas/3.png)
+
+![](docs/capturas/4.png)
+
+![](docs/capturas/5.png)
+
+![](docs/capturas/6.png)
+
+![](docs/capturas/7.png)
+
 ## Que permite facer?
 
 - Recoller información sociolingüística e respostas abertas sobre a identificación con variedades do español e do galego.
