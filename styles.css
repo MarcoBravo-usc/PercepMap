@@ -1,0 +1,144 @@
+
+/* PercepMap v2 — deseño unificado. Non altera as xeometrías nin o gardado. */
+:root {
+  --usc: #003366; --usc-claro: #12548a; --texto: #1d3044;
+  --secundario: #52667b; --fondo: #f1f5f9; --borde: #d9e3ed;
+  --branco: #fff; --sombra: 0 10px 34px rgba(19,49,78,.075);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--fondo); color: var(--texto);
+  font-family: "Noto Sans", system-ui, -apple-system, sans-serif; line-height: 1.6; }
+header { background: linear-gradient(115deg, #002c58, #074575); color: #fff;
+  padding: 19px 20px 22px; text-align: center; border-bottom: 4px solid #7bb9d4; }
+header img { display:block; width:auto; max-width:min(220px,80vw); max-height:72px;
+  height:auto; margin:0 auto 11px; background:#fff; padding:7px 11px;
+  border-radius:9px; }
+header h1 { color:#fff; font-size:clamp(1.25rem,2.6vw,1.75rem);
+  line-height:1.3; font-weight:700; margin:0 0 5px; letter-spacing:0; }
+header .subtitulo { color:#d9e9f7; margin:0; font-size:.87rem; font-weight:400; }
+main { width:min(920px,calc(100% - 32px)); max-width:none; margin:25px auto;
+  padding:clamp(22px,4vw,44px); background:#fff; border:1px solid var(--borde);
+  border-radius:18px; box-shadow:var(--sombra); }
+h2,h3,h4 { color:var(--usc); line-height:1.35; }
+h3 { font-size:1.13rem; margin:0 0 14px; }
+p,li { line-height:1.7; }
+a { color:var(--usc-claro); }
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline:3px solid #61a5dc; outline-offset:3px;
+}
+button, .btnComezar { font-family:inherit; background:var(--usc); color:white;
+  border:1px solid var(--usc); border-radius:11px; padding:13px 22px;
+  font-size:1rem; font-weight:700; cursor:pointer; transition:background .15s, transform .15s;
+  box-shadow:0 3px 8px rgba(0,51,102,.10); }
+button:hover, .btnComezar:hover { background:#07538b; color:#fff; }
+button:active, .btnComezar:active { transform:translateY(1px); }
+button:disabled { opacity:.65; cursor:wait; }
+.btnComezar { display:block; text-align:center; text-decoration:none; margin-top:25px; }
+fieldset { border:1px solid var(--borde); border-radius:14px;
+  padding:clamp(16px,3vw,25px); margin:22px 0; background:#fff; }
+label { color:var(--texto); }
+select,input[type="text"],textarea {
+  background:#fff; color:var(--texto); border:1px solid #b8c8d8;
+  border-radius:9px; font-family:inherit; min-height:43px;
+}
+select:focus,input:focus,textarea:focus { border-color:#287ab4; }
+.radio { border-radius:9px; padding:5px 8px; margin-left:-8px; }
+.radio:hover { background:#f2f7fc; }
+input[type="radio"],input[type="checkbox"] { accent-color:var(--usc); }
+.caixa { background:#f2f7fb; border:1px solid var(--borde);
+  border-left:4px solid var(--usc); border-radius:12px; padding:19px 22px; }
+.caixa p { margin-top:0; }
+footer { text-align:center; color:#65758a; font-size:.82rem; line-height:1.7;
+  margin:25px auto 30px; padding:0 16px; }
+main footer { margin:25px auto 0; }
+.oculto { display:none !important; }
+
+/* Progreso orientativo; non cambia a orde nin as respostas */
+.percep-progress { max-width:1600px; width:calc(100% - 32px);
+  margin:19px auto 0; }
+.percep-progress__top { display:flex; align-items:center; justify-content:space-between;
+  gap:12px; color:#425d74; font-size:.82rem; font-weight:700; margin-bottom:7px; }
+.percep-progress__track { display:grid; grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:5px; }
+.percep-progress__step { height:6px; background:#d4e0ea; border-radius:20px; }
+.percep-progress__step.is-done { background:#246c9c; }
+.percep-progress__step.is-current { background:#003366; }
+
+/* Páxinas de mapas */
+body.paxina-mapa main { width:min(1600px,calc(100% - 32px));
+  padding:21px 26px; margin:19px auto; }
+body.paxina-mapa .instrucions { max-width:none; margin:0; }
+body.paxina-mapa .instrucions h3 { margin-bottom:10px; }
+body.paxina-mapa .instrucions p { margin:8px 0; }
+body.paxina-mapa .instrucions ul { margin:8px 0 12px; padding-left:22px; }
+body.paxina-mapa .instrucions li { margin-bottom:5px; }
+.areaMapa { width:min(1600px,calc(100% - 32px)); max-width:none;
+  margin:18px auto; display:grid; grid-template-columns:minmax(0,1fr) 315px;
+  gap:20px; align-items:start; }
+#mapa { min-width:0; border:1px solid var(--borde); background:#fff;
+  padding:9px; border-radius:16px; box-shadow:var(--sombra); }
+#map { width:100%; height:clamp(480px,68vh,780px); border:0;
+  border-radius:10px; background:#f7fafc; }
+#lista { width:auto; min-width:0; padding:22px; background:#fff;
+  border:1px solid var(--borde); border-radius:16px; box-shadow:var(--sombra); }
+#lista h3 { margin:0 0 15px; }
+#variedades { background:#f7fafc; border:1px solid #e1eaf1;
+  border-radius:11px; padding:10px; min-height:95px; }
+#variedades:empty::before { content:"Aínda non rexistraches variedades. Debuxa unha zona no mapa para comezar.";
+  display:block; padding:14px 8px; font-size:.9rem; color:#667a8e; line-height:1.55; }
+.variedade { background:#fff; border:1px solid #dfe7ef; border-left:4px solid #377da7;
+  border-radius:9px; padding:12px; margin:0 0 9px; box-shadow:none; }
+.variedade:last-child { margin-bottom:0; }
+.variedade h4 { margin:0 0 4px; font-size:.94rem; overflow-wrap:anywhere; }
+.variedade p { margin:0; color:#53687b; font-size:.87rem; overflow-wrap:anywhere; }
+.botons { width:min(1600px,calc(100% - 32px)); max-width:none; margin:17px auto 28px;
+  display:flex; justify-content:space-between; gap:15px; }
+.botons button { flex:0 1 210px; margin:0; }
+.botons #atras { background:#fff; border:1px solid #b9cbda; color:var(--usc); }
+.botons #atras:hover { background:#edf4fa; }
+#modal { position:fixed; inset:0; background:rgba(9,29,49,.65);
+  display:flex; justify-content:center; align-items:center; padding:16px; z-index:9999; }
+.modal { width:min(560px,100%); max-height:calc(100vh - 32px); overflow:auto;
+  padding:clamp(20px,4vw,32px); border-radius:17px; background:#fff;
+  box-shadow:0 24px 70px rgba(0,0,0,.25); }
+.modal h2 { margin:0 0 20px; font-size:1.4rem; }
+.modal label { display:block; margin:0 0 16px; font-weight:700; }
+.modal input,.modal textarea { display:block; width:100%; margin-top:7px;
+  padding:11px 12px; font-size:1rem; }
+.modal textarea { min-height:125px; resize:vertical; }
+.modalBotons { display:flex; gap:12px; margin-top:20px; }
+.modalBotons button { flex:1; margin:0; }
+.modalBotons #cancelar { background:#fff; color:var(--usc);
+  border-color:#b9cbda; }
+.modalBotons #cancelar:hover { background:#edf4fa; }
+.leaflet-container { font-family:inherit; }
+.leaflet-bar a { color:var(--usc); }
+.percep-map-hint { margin:0 0 10px; font-size:.84rem; color:#4e6578; }
+.mensaxeFinal { max-width:760px; margin:0 auto; min-height:250px; }
+.mensaxeFinal h2 { color:var(--usc); font-size:clamp(1.5rem,3vw,2rem); }
+.mensaxeFinal p { max-width:none; }
+#finalizar { width:auto; max-width:100%; }
+@media(max-width:900px) {
+  .areaMapa { grid-template-columns:1fr; }
+  #lista { width:100%; }
+  #map { height:min(68vh,610px); min-height:400px; }
+}
+@media(max-width:600px) {
+  header { padding:15px 12px 18px; }
+  header img { max-height:58px; }
+  main,body.paxina-mapa main { width:calc(100% - 20px);
+    padding:19px 17px; margin:14px auto; }
+  .percep-progress,.areaMapa,.botons { width:calc(100% - 20px); }
+  .areaMapa { gap:12px; margin:12px auto; }
+  #map { height:420px; min-height:420px; }
+  #lista { padding:17px; }
+  .botons { gap:10px; }
+  .botons button { flex:1; padding:12px 9px; font-size:.95rem; }
+  .modalBotons { flex-direction:column-reverse; }
+  .modalBotons button { width:100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; }
+}

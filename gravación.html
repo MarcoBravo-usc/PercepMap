@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<html lang="gl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PercepMap · Último paso</title>
+
+<style>
+:root {
+    --usc: #003366;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #eef2f5;
+    font-family: "Noto Sans", sans-serif;
+}
+
+header {
+    background: #003366;
+    color: white;
+    padding: 22px 20px 28px;
+    text-align: center;
+}
+
+header img {
+    display: block;
+    margin: 0 auto 12px;
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+header h1 {
+    margin: 5px 0 8px;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.subtitulo {
+    margin: 0;
+    color: #d6e3f1;
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+main {
+    padding: 20px;
+}
+
+.mensaxeFinal {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.mensaxeFinal h2 {
+    color: #003366;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.mensaxeFinal p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #444;
+    max-width: 700px;
+    width: 100%;
+}
+
+.mensaxeFinal ul {
+    max-width: 700px;
+    width: 100%;
+    line-height: 1.9;
+    color: #444;
+}
+
+#finalizar {
+    display: block;
+    margin: 35px auto 0;
+    padding: 14px 28px;
+    background: #003366;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+    box-shadow: 0 3px 12px rgba(0,51,102,.20);
+}
+
+#finalizar:hover {
+    background: #00509d;
+}
+
+#finalizar:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+#estado {
+    display: none;
+    max-width: 700px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 14px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+#estado.erro {
+    display: block;
+    background: #fce8e8;
+    color: #a12626;
+}
+
+#estado.exito {
+    display: block;
+    background: #e4f4e8;
+    color: #206b36;
+}
+
+footer {
+    text-align: center;
+    margin: 40px 0;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+</style>
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+
+<body>
+
+<header>
+    <span class="institutional-mark-placeholder" aria-label="Identidade institucional non incluída nesta distribución">USC</span>
+
+    <h1>Percepción das variedades lingüísticas</h1>
+
+    <p class="subtitulo">
+        Proxecto CESGAL · Universidade de Santiago de Compostela
+    </p>
+</header>
+<nav class="percep-progress" aria-label="Progreso do cuestionario"><div class="percep-progress__top"><span>Último paso</span><span>Paso 6 de 6</span></div><div class="percep-progress__track" aria-hidden="true"><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-current"></span></div></nav>
+
+<main>
+    <div class="mensaxeFinal">
+
+        <h2>Último paso</h2>
+
+        <p>Nesta tarefa debedes contrastar libremente cun/ha compañeiro/a o que puxestes nos vosos mapas. É importante que non vos limitedes a ler o escrito neles, senón que xustifiquedes ou expliquedes as vosas opinións.</p>
+        <p>Acendede as gravadoras dos vosos móbiles e gravade simultaneamente a tarefa.</p>
+        <p>Cada membro do grupo debe ler en voz alta o seguinte texto e gravalo:</p>
+        <p><b>“Eu,..................................., confirmo que fun informado dos termos de realización deste cuestionario, por escrito e oralmente, e que os comprendín. Confirmo que dou o meu consentimento para que Marco Bravo Rodríguez empregue estes datos para fins académicos e de investigación.”</b></p>
+        <p>Gardade as vosas gravacións e enviádellas ao profesor ou profesora da materia a
+        través da aula virtual. Como nome do arquivo, poñede as dúas iniciais do voso primeiro apelido e as dúas iniciais do primeiro apelido do/a voso/a compañeiro/a; p.e. PE_SA.</p>
+        
+
+        
+
+        <div id="estado" role="status" aria-live="polite"></div>
+
+        <button id="finalizar" type="button">
+            Entregar respostas e finalizar
+        </button>
+
+    </div>
+</main>
+
+<footer>
+    © 2026 Marco Bravo Rodríguez<br>
+    Proxecto CESGAL · Universidade de Santiago de Compostela
+</footer>
+
+<script>
+
+// LER DATOS DO NAVEGADOR
+
+function lerDatos(clave, alternativa = null) {
+    let valor = localStorage.getItem(clave);
+
+    if (valor === null && alternativa !== null) {
+        valor = localStorage.getItem(alternativa);
+    }
+
+    if (valor === null) {
+        return null;
+    }
+
+    try {
+        return JSON.parse(valor);
+    } catch (erro) {
+        throw new Error(
+            "Os datos de " + clave + " non teñen un formato válido."
+        );
+    }
+}
+
+
+// Un token estable evita duplicados se hai que repetir a petición.
+function obterTokenEntrega() {
+    const participante = localStorage.getItem("participanteId") || "";
+    const clave = "tokenEntrega:" + participante;
+    let token = localStorage.getItem(clave);
+    if (!token) {
+        token = crypto.randomUUID();
+        localStorage.setItem(clave, token);
+    }
+    return token;
+}
+
+// REUNIR TODA A INFORMACIÓN
+
+function prepararEntrega() {
+    const datos = {
+        participanteId: localStorage.getItem("participanteId"),
+
+        datosPersoais: lerDatos("datosPersoais"),
+
+        // Admite as dúas formas de escribir o nome da clave de España.
+        espana: lerDatos("españa", "espana") || [],
+
+        america: lerDatos("america") || [],
+
+        galicia: lerDatos("galicia") || [],
+
+        dataEntrega: new Date().toISOString(),
+        tokenEntrega: obterTokenEntrega()
+    };
+
+    return datos;
+}
+
+
+// MOSTRAR MENSAXES
+
+function mostrarEstado(mensaxe, tipo) {
+    const estado = document.getElementById("estado");
+
+    estado.textContent = mensaxe;
+    estado.className = tipo;
+}
+
+
+// ENVIAR A ENTREGA
+
+document.getElementById("finalizar").addEventListener("click", async function () {
+
+    const boton = this;
+
+    boton.disabled = true;
+    boton.textContent = "Enviando respostas...";
+
+    try {
+
+        const datos = prepararEntrega();
+
+        // Comprobar identificador.
+        if (!datos.participanteId) {
+            throw new Error(
+                "Non se atopou o identificador do participante. Volve ao inicio."
+            );
+        }
+
+        // Comprobar datos persoais.
+        if (
+            !datos.datosPersoais ||
+            typeof datos.datosPersoais !== "object"
+        ) {
+            throw new Error(
+                "Non se atoparon os datos persoais. Comproba a primeira páxina."
+            );
+        }
+
+        // Comprobar que os mapas teñen o formato correcto.
+        if (
+            !Array.isArray(datos.espana) ||
+            !Array.isArray(datos.america) ||
+            !Array.isArray(datos.galicia)
+        ) {
+            throw new Error(
+                "Os datos dalgún mapa non teñen o formato esperado."
+            );
+        }
+
+        // Un mapa sen polígonos tamén pode ser unha resposta válida.
+
+        // Enviar os datos ao servidor.
+        const resposta = await fetch("gardar.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+
+        // Ler a resposta.
+        const texto = await resposta.text();
+
+        let resultado;
+
+        try {
+            resultado = JSON.parse(texto);
+        } catch (erro) {
+            throw new Error(
+                "O servidor non devolveu unha resposta JSON válida. " +
+                "Comproba que gardar.php está funcionando."
+            );
+        }
+
+        if (!resposta.ok) {
+            throw new Error(
+                resultado.mensaxe ||
+                "Erro no servidor: HTTP " + resposta.status
+            );
+        }
+
+        if (resultado.ok !== true) {
+            throw new Error(
+                resultado.mensaxe ||
+                "O servidor non confirmou o gardado."
+            );
+        }
+
+        // Entrega confirmada.
+        mostrarEstado(
+            "As túas respostas gardáronse correctamente. Grazas pola túa participación.",
+            "exito"
+        );
+
+        boton.textContent = "Entrega realizada";
+
+        // Ir á páxina final despois de mostrar a confirmación.
+        setTimeout(function () {
+            window.location.href = "fin.html";
+        }, 1200);
+
+    } catch (erro) {
+
+        console.error("Erro na entrega:", erro);
+
+        mostrarEstado(
+            erro.message || "Produciuse un erro ao enviar as respostas.",
+            "erro"
+        );
+
+        boton.disabled = false;
+        boton.textContent = "Tentar de novo";
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+

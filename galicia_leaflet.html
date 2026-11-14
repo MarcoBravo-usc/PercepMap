@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PercepMap · Galicia</title>
+
+
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"/>
+
+<link rel="stylesheet" href="styles.css?v=2">
+
+<!-- PercepMap: mapa amplo e centrado na súa columna, variedades á dereita -->
+<style>
+body.paxina-mapa .areaMapa {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: min(1120px, calc(100% - 24px)) !important;
+  max-width: 1120px !important;
+  margin: 20px auto !important;
+  gap: 16px !important;
+}
+body.paxina-mapa #mapa {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1120px !important;
+  margin: 0 auto !important;
+  flex: none !important;
+}
+body.paxina-mapa #map {
+  display: block !important;
+  width: 100% !important;
+  height: min(72vh, 740px) !important;
+  min-height: 440px !important;
+  margin: 0 auto !important;
+}
+body.paxina-mapa #lista {
+  width: 100% !important;
+  max-width: 1120px !important;
+  margin: 0 auto !important;
+}
+body.paxina-mapa .botons {
+  width: min(1120px, calc(100% - 24px)) !important;
+}
+@media(max-width:600px) {
+  body.paxina-mapa #map { height: 460px !important; min-height: 460px !important; }
+}
+</style>
+</head>
+
+<body class="paxina-mapa">
+
+<header>
+<span class="institutional-mark-placeholder" aria-label="Identidade institucional non incluída nesta distribución">USC</span>
+
+<h1>Percepción das variedades lingüísticas</h1>
+
+<p class="subtitulo">
+Proxecto CESGAL · Universidade de Santiago de Compostela
+</p>
+
+</header>
+<nav class="percep-progress" aria-label="Progreso do cuestionario"><div class="percep-progress__top"><span>Galicia</span><span>Paso 5 de 6</span></div><div class="percep-progress__track" aria-hidden="true"><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-current"></span><span class="percep-progress__step "></span></div></nav>
+
+
+
+<main>
+<div class="instrucions">
+
+<h3 style="text-align: center;">
+Repite a mesma tarefa no mapa de Galicia
+</h3>
+
+</div>
+ 
+</main>
+ 
+<div class="areaMapa">
+ 
+<section id="mapa">
+<p class="percep-map-hint">Usa a ferramenta de polígono na esquina superior esquerda. Podes ampliar o mapa.</p>
+<div id="map" aria-label="Mapa interactivo para delimitar variedades"></div>
+</section>
+ 
+<section id="lista">
+<h3>Variedades rexistradas</h3>
+<div id="variedades" aria-live="polite"></div>
+</section>
+ 
+</div>
+ 
+<div class="botons">
+<button id="atras">← Atrás</button>
+<button id="seguinte">Seguinte →</button>
+</div>
+
+
+
+<div id="modal" class="oculto" role="dialog" aria-modal="true" aria-label="Nova variedade">
+
+<div class="modal">
+
+<h2>Nova variedade</h2>
+
+<label>
+
+Nome da variedade
+
+<input
+type="text"
+id="nome">
+
+</label>
+
+
+<label>
+
+Descrición
+
+<textarea
+id="descricion"
+rows="6"></textarea>
+
+</label>
+
+
+<div class="modalBotons">
+
+<button id="cancelar">
+
+Cancelar
+
+</button>
+
+<button id="gardar">
+
+Gardar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+<script
+src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js">
+</script>
+
+<script src="galicia_leaflet.js"></script>
+
+<footer>
+
+© 2026 Marco Bravo Rodríguez<br>
+Proxecto CESGAL · Universidade de Santiago de Compostela<br>
+
+</footer>
+
+</body>
+</html>

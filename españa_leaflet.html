@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PercepMap · España</title>
+
+
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"/>
+
+<link rel="stylesheet" href="styles.css?v=2">
+
+<!-- PercepMap: mapa centrado, panel de variedades debaixo -->
+<style>
+body.paxina-mapa .areaMapa {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: min(1120px, calc(100% - 24px)) !important;
+  max-width: 1120px !important;
+  margin: 20px auto !important;
+  gap: 16px !important;
+}
+body.paxina-mapa #mapa {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1120px !important;
+  margin: 0 auto !important;
+  flex: none !important;
+}
+body.paxina-mapa #map {
+  display: block !important;
+  width: 100% !important;
+  height: min(72vh, 740px) !important;
+  min-height: 440px !important;
+  margin: 0 auto !important;
+}
+body.paxina-mapa #lista {
+  width: 100% !important;
+  max-width: 1120px !important;
+  margin: 0 auto !important;
+}
+body.paxina-mapa .botons {
+  width: min(1120px, calc(100% - 24px)) !important;
+}
+@media(max-width:600px) {
+  body.paxina-mapa #map { height: 460px !important; min-height: 460px !important; }
+}
+</style>
+</head>
+
+<body class="paxina-mapa">
+
+<header>
+<span class="institutional-mark-placeholder" aria-label="Identidade institucional non incluída nesta distribución">USC</span>
+
+<h1>Percepción das variedades lingüísticas</h1>
+
+<p class="subtitulo">
+Proxecto CESGAL · Universidade de Santiago de Compostela
+</p>
+
+</header>
+<nav class="percep-progress" aria-label="Progreso do cuestionario"><div class="percep-progress__top"><span>España</span><span>Paso 3 de 6</span></div><div class="percep-progress__track" aria-hidden="true"><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-current"></span><span class="percep-progress__step "></span><span class="percep-progress__step "></span><span class="percep-progress__step "></span></div></nav>
+
+
+
+<main>
+
+<div class="instrucions" style="font-size: 1.15rem;">
+<summary>
+<h3>COMO COMPLETAR A TAREFA?</h3>
+</summary>
+<p>
+Sinala neste mapa as variedades lingüísticas que identificas en España.
+</p>
+
+<ul>
+<li>
+Selecciona a ferramenta de debuxo situada na esquina superior esquerda do mapa.
+</li>
+
+<li>
+Debuxa a zona correspondente a unha variedade lingüística e pecha o polígono facendo clic de novo sobre o punto inicial. Podes facer zoom.
+</li>
+
+<li>
+Ao rematar, abrirase unha ventá na que deberás indicar como denominas esa variedade e que características lle asocias.
+</li>
+
+<li>
+Podes escribir o que saibas, o que che soe ou a forma na que normalmente te refires a esa variedade.
+</li>
+
+<li>
+Engade tantas variedades como queiras. As que identifiques aparecerán á dereita.
+</li>
+</ul>
+
+<p>
+<strong>Recorda que non é un exame e non hai respostas correctas nin incorrectas!</strong>
+</p>
+
+
+</div>
+
+</main>
+ 
+<div class="areaMapa">
+ 
+<section id="mapa">
+<p class="percep-map-hint">Usa a ferramenta de polígono na esquina superior esquerda. Podes ampliar o mapa.</p>
+<div id="map" aria-label="Mapa interactivo para delimitar variedades"></div>
+</section>
+ 
+<section id="lista">
+<h3>Variedades rexistradas</h3>
+<div id="variedades" aria-live="polite"></div>
+</section>
+ 
+</div>
+ 
+<div class="botons">
+<button id="atras">← Atrás</button>
+<button id="seguinte">Seguinte →</button>
+</div>
+
+
+
+<div id="modal" class="oculto" role="dialog" aria-modal="true" aria-label="Nova variedade">
+
+<div class="modal">
+
+<h2>Nova variedade</h2>
+
+<label>
+
+Nome da variedade
+
+<input
+type="text"
+id="nome">
+
+</label>
+
+
+<label>
+
+Descrición
+
+<textarea
+id="descricion"
+rows="6"></textarea>
+
+</label>
+
+
+<div class="modalBotons">
+
+<button id="cancelar">
+
+Cancelar
+
+</button>
+
+<button id="gardar">
+
+Gardar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+<script
+src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js">
+</script>
+
+<script src="españa_leaflet.js"></script>
+
+<footer>
+
+© 2026 Marco Bravo Rodríguez<br>
+Proxecto CESGAL · Universidade de Santiago de Compostela<br>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+<html lang="gl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PercepMap · Datos persoais</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --usc: #003366;
+    --gris: #eef2f5;
+    --borde: #d8dde3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Noto Sans", sans-serif;
+    background: var(--gris);
+}
+
+header {
+    background: #003366;
+    color: white;
+    padding: 22px 20px 28px;
+    text-align: center;
+}
+
+header img {
+    display: block;
+    margin: 0 auto 15px;
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+}
+
+header h1 {
+    margin: 5px 0 8px;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+.subtitulo {
+    margin: 0;
+    color: #d6e3f1;
+    font-size: .95rem;
+    font-weight: 300;
+    letter-spacing: .5px;
+}
+
+h3 {
+    margin-top: 0;
+    color: #003366;
+    font-size: 1.15rem;
+}
+
+main {
+    width: 900px;
+    max-width: 95%;
+    margin: 35px auto;
+    background: white;
+    padding: 45px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);
+}
+
+fieldset {
+    border: 1px solid #d9e1e8;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+select,
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 6px;
+    border: 1px solid #ccd6e0;
+    border-radius: 8px;
+    font-family: "Noto Sans", sans-serif;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.radio input {
+    width: auto;
+    margin: 0;
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #003366;
+}
+
+button {
+    width: 100%;
+    margin-top: 35px;
+    background: #003366;
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0057a3;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: .9em;
+    color: #666;
+    padding-bottom: 25px;
+    line-height: 1.7;
+}
+
+.oculto {
+    display: none;
+}
+
+</style>
+
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+
+<body>
+
+<header>
+
+<span class="institutional-mark-placeholder" aria-label="Identidade institucional non incluída nesta distribución">USC</span>
+
+<h1>Percepción das variedades lingüísticas</h1>
+
+<p class="subtitulo">
+Proxecto CESGAL · Universidade de Santiago de Compostela
+</p>
+
+</header>
+<nav class="percep-progress" aria-label="Progreso do cuestionario"><div class="percep-progress__top"><span>Datos persoais</span><span>Paso 2 de 6</span></div><div class="percep-progress__track" aria-hidden="true"><span class="percep-progress__step is-done"></span><span class="percep-progress__step is-current"></span><span class="percep-progress__step "></span><span class="percep-progress__step "></span><span class="percep-progress__step "></span><span class="percep-progress__step "></span></div></nav>
+
+
+<main>
+
+<h3>DATOS PERSOAIS</h3>
+
+<form id="formulario">
+
+
+<!-- ========================= -->
+<!-- LUGAR DE NACEMENTO -->
+<!-- ========================= -->
+
+<fieldset>
+
+<h3>Lugar de nacemento</h3>
+
+<label for="provincia_nacemento">Provincia</label>
+
+<select id="provincia_nacemento">
+
+<option value="">Selecciona</option>
+<option>A Coruña</option>
+<option>Lugo</option>
+<option>Ourense</option>
+<option>Pontevedra</option>
+
+</select>
+
+<label for="concello_nacemento">Concello</label>
+
+<select id="concello_nacemento">
+
+<option value="">Selecciona un concello</option>
+
+</select>
+
+<label class="radio">
+<input type="checkbox" id="outro_nacemento">
+Outro
+</label>
+
+<input
+    type="text"
+    id="texto_outro_nacemento"
+    class="oculto"
+    placeholder="Especifica o lugar de nacemento"
+>
+
+</fieldset>
+
+
+<!-- ========================= -->
+<!-- RESIDENCIA -->
+<!-- ========================= -->
+
+<fieldset>
+
+<h3>Residencia habitual</h3>
+
+<label for="provincia_residencia">Provincia</label>
+
+<select id="provincia_residencia">
+
+<option value="">Selecciona</option>
+<option>A Coruña</option>
+<option>Lugo</option>
+<option>Ourense</option>
+<option>Pontevedra</option>
+
+</select>
+
+<label for="concello_residencia">Concello</label>
+
+<select id="concello_residencia">
+
+<option value="">Selecciona un concello</option>
+
+</select>
+
+<label class="radio">
+<input type="checkbox" id="outra_residencia">
+Outro
+</label>
+
+<input
+    type="text"
+    id="texto_outra_residencia"
+    class="oculto"
+    placeholder="Especifica o lugar de residencia"
+>
+
+</fieldset>
+
+
+<!-- ========================= -->
+<!-- XÉNERO -->
+<!-- ========================= -->
+
+<fieldset>
+
+<h3>Xénero</h3>
+
+<label class="radio">
+<input type="radio" name="xenero" value="Muller">
+Muller
+</label>
+
+<label class="radio">
+<input type="radio" name="xenero" value="Home">
+Home
+</label>
+
+<label class="radio">
+<input type="radio" name="xenero" value="Non binario">
+Non binario
+</label>
+
+<label class="radio">
+<input type="radio" name="xenero" value="Prefiro non responder">
+Prefiro non responder
+</label>
+
+</fieldset>
+
+
+<!-- ========================= -->
+<!-- LINGUA MATERNA -->
+<!-- ========================= -->
+
+<fieldset>
+
+<h3>Lingua materna</h3>
+
+<label class="radio">
+<input type="radio" name="materna" value="Galego">
+Galego
+</label>
+
+<label class="radio">
+<input type="radio" name="materna" value="Español">
+Español
+</label>
+
+<label class="radio">
+<input type="radio" name="materna" value="Ambas">
+Ambas
+</label>
+
+<label class="radio">
+<input type="radio" name="materna" value="Outras">
+Outras
+</label>
+
+<input
+    type="text"
+    id="outra_materna"
+    class="oculto"
+    placeholder="Especifica a lingua"
+>
+
+</fieldset>
+
+
+<!-- ========================= -->
+<!-- LINGUA HABITUAL -->
+<!-- ========================= -->
+
+<fieldset>
+
+<h3>Lingua habitual</h3>
+
+<label class="radio">
+<input type="radio" name="habitual" value="Só galego">
+Só galego
+</label>
+
+<label class="radio">
+<input type="radio" name="habitual" value="Máis galego ca español">
+Máis galego ca español
+</label>
+
+<label class="radio">
+<input type="radio" name="habitual" value="Máis español ca galego">
+Máis español ca galego
+</label>
+
+<label class="radio">
+<input type="radio" name="habitual" value="Só español">
+Só español
+</label>
+
+<label class="radio">
+<input type="radio" name="habitual" value="Outras">
+Outras
+</label>
+
+<input
+    type="text"
+    id="outra_habitual"
+    class="oculto"
+    placeholder="Especifica a lingua"
+>
+
+</fieldset>
+
+
+<!-- ========================= -->
+<!-- IDENTIFICACIÓN -->
+<!-- ========================= -->
+
+<fieldset>
+
+<h3>
+Indica con que variedade/s do español te identificas máis e por que motivos, e con cal/es te identificas menos e por que motivos. Se non te identificas con ningunha, explica por que:
+</h3>
+
+<textarea
+    id="identificacion"
+    rows="6"
+    placeholder="Explica a túa resposta"
+></textarea>
+
+<h3 style="margin-top: 40px;">
+Indica con que variedade/s do galego te identificas máis e por que motivos, e con cal/es te identificas menos e por que motivos. Se non te identificas con ningunha, explica por que:
+</h3>
+
+<textarea
+    id="identificacionGalego"
+    rows="6"
+    placeholder="Explica a túa resposta"
+></textarea>
+
+</fieldset>
+
+
+<button type="button" id="seguinte">
+Seguinte
+</button>
+
+</form>
+
+
+<footer>
+
+© 2026 Marco Bravo Rodríguez<br>
+
+Proxecto CESGAL · Universidade de Santiago de Compostela
+
+</footer>
+
+</main>
+
+
+<script src="concellos.js"></script>
+
+
+<script>
+
+// ================================
+// PercepMap
+// DATOS PERSOAIS
+// ================================
+
+
+// ================================
+// CÓDIGOS DE CONCELLOS
+// ================================
+
+const codigosConcellos = {};
+
+concellos.forEach(function(c, indice) {
+
+    codigosConcellos[c.concello] =
+        String(indice + 1).padStart(3, "0");
+
+});
+
+
+// ================================
+// IDENTIFICADOR
+// ================================
+
+function crearIdentificador() {
+
+    let codigoXenero = "PNR";
+
+    const xenero = document.querySelector(
+        'input[name="xenero"]:checked'
+    );
+
+    if (xenero) {
+
+        if (xenero.value === "Muller") {
+            codigoXenero = "M";
+        }
+
+        else if (xenero.value === "Home") {
+            codigoXenero = "H";
+        }
+
+        else if (xenero.value === "Non binario") {
+            codigoXenero = "NB";
+        }
+
+    }
+
+    const concello = document.getElementById(
+        "concello_residencia"
+    ).value;
+
+    const codigoConcello =
+        codigosConcellos[concello] || "000";
+
+    const numero = Math.floor(
+        1000 + Math.random() * 9000
+    );
+
+    return (
+        codigoXenero +
+        codigoConcello +
+        "-" +
+        numero
+    );
+
+}
+
+
+// ================================
+// CARGAR CONCELLOS
+// ================================
+
+function cargarConcellos(idProvincia, idConcello) {
+
+    const provincia = document.getElementById(
+        idProvincia
+    ).value;
+
+    const select = document.getElementById(
+        idConcello
+    );
+
+    select.innerHTML =
+        '<option value="">Selecciona un concello</option>';
+
+    concellos
+        .filter(c => c.provincia === provincia)
+        .forEach(function(c) {
+
+            const opcion = document.createElement("option");
+
+            opcion.value = c.concello;
+
+            opcion.textContent = c.concello;
+
+            select.appendChild(opcion);
+
+        });
+
+}
+
+
+// ================================
+// EVENTOS DAS PROVINCIAS
+// ================================
+
+document
+.getElementById("provincia_nacemento")
+.addEventListener("change", function() {
+
+    cargarConcellos(
+        "provincia_nacemento",
+        "concello_nacemento"
+    );
+
+});
+
+
+document
+.getElementById("provincia_residencia")
+.addEventListener("change", function() {
+
+    cargarConcellos(
+        "provincia_residencia",
+        "concello_residencia"
+    );
+
+});
+
+
+// ================================
+// CAMPOS OUTRO
+// ================================
+
+document
+.getElementById("outro_nacemento")
+.addEventListener("change", function() {
+
+    document
+        .getElementById("texto_outro_nacemento")
+        .classList.toggle("oculto", !this.checked);
+
+});
+
+
+document
+.getElementById("outra_residencia")
+.addEventListener("change", function() {
+
+    document
+        .getElementById("texto_outra_residencia")
+        .classList.toggle("oculto", !this.checked);
+
+});
+
+
+// ================================
+// OUTRAS LINGUAS
+// ================================
+
+document
+.querySelectorAll('input[name="materna"]')
+.forEach(function(radio) {
+
+    radio.addEventListener("change", function() {
+
+        const campo = document.getElementById(
+            "outra_materna"
+        );
+
+        campo.classList.toggle(
+            "oculto",
+            this.value !== "Outras"
+        );
+
+    });
+
+});
+
+
+document
+.querySelectorAll('input[name="habitual"]')
+.forEach(function(radio) {
+
+    radio.addEventListener("change", function() {
+
+        const campo = document.getElementById(
+            "outra_habitual"
+        );
+
+        campo.classList.toggle(
+            "oculto",
+            this.value !== "Outras"
+        );
+
+    });
+
+});
+
+
+// ================================
+// GARDAR DATOS
+// ================================
+
+document
+.getElementById("seguinte")
+.addEventListener("click", function() {
+
+    try {
+
+        const datosPersoais = {
+
+            provinciaNacemento:
+                document.getElementById(
+                    "provincia_nacemento"
+                ).value,
+
+            concelloNacemento:
+                document.getElementById(
+                    "concello_nacemento"
+                ).value,
+
+            outroNacemento:
+                document.getElementById(
+                    "outro_nacemento"
+                ).checked,
+
+            textoOutroNacemento:
+                document.getElementById(
+                    "texto_outro_nacemento"
+                ).value,
+
+            provinciaResidencia:
+                document.getElementById(
+                    "provincia_residencia"
+                ).value,
+
+            concelloResidencia:
+                document.getElementById(
+                    "concello_residencia"
+                ).value,
+
+            outraResidencia:
+                document.getElementById(
+                    "outra_residencia"
+                ).checked,
+
+            textoOutraResidencia:
+                document.getElementById(
+                    "texto_outra_residencia"
+                ).value,
+
+            xenero:
+                document.querySelector(
+                    'input[name="xenero"]:checked'
+                )?.value || "",
+
+            linguaMaterna:
+                document.querySelector(
+                    'input[name="materna"]:checked'
+                )?.value || "",
+
+            outraLinguaMaterna:
+                document.getElementById(
+                    "outra_materna"
+                ).value,
+
+            linguaHabitual:
+                document.querySelector(
+                    'input[name="habitual"]:checked'
+                )?.value || "",
+
+            outraLinguaHabitual:
+                document.getElementById(
+                    "outra_habitual"
+                ).value,
+
+            identificacion:
+                document.getElementById(
+                    "identificacion"
+                ).value,
+
+            identificacionGalego:
+                document.getElementById(
+                    "identificacionGalego"
+                ).value
+
+        };
+
+
+        // Crear identificador
+
+        const participanteId = crearIdentificador();
+
+
+        // Un novo participante non debe herdar os mapas da sesión anterior.
+        for (const clave of ["españa", "espana", "america", "galicia"]) {
+            localStorage.removeItem(clave);
+        }
+
+        // Gardar no navegador
+
+        localStorage.setItem(
+            "participanteId",
+            participanteId
+        );
+
+        localStorage.setItem(
+            "datosPersoais",
+            JSON.stringify(datosPersoais)
+        );
+
+
+        // Comprobar gardado
+
+        if (
+            !localStorage.getItem("participanteId") ||
+            !localStorage.getItem("datosPersoais")
+        ) {
+
+            throw new Error(
+                "Non se puideron gardar os datos."
+            );
+
+        }
+
+
+        // Continuar
+
+        window.location.href = "españa_leaflet.html";
+
+    }
+
+    catch(erro) {
+
+        console.error(erro);
+
+        alert(
+            "Produciuse un problema ao gardar os datos. "
+            + "Téntao de novo."
+        );
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
