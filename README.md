@@ -2,8 +2,6 @@
 
 **Ferramenta dixital para a investigación en dialectoloxía perceptiva**
 
-**Galego** · [Español](README_ES.md)
-
 PercepMap é unha aplicación web deseñada para estudar como as persoas perciben as variedades xeolectais. Combina un cuestionario sociolingüístico con tarefas de delimitación de áreas sobre mapas interactivos de España, América e Galicia. As respostas poden exportarse e analizarse para elaborar mapas individuais e representacións agregadas das áreas sinaladas.
 
 O proxecto desenvolveuse no contexto dunha investigación doutoral na Universidade de Santiago de Compostela.
